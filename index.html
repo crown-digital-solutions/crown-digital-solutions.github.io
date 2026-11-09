@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101d36">
+  <meta name="description" content="Crown Digital Solutions provides professional digital, web, data, document and IT services for individuals and businesses in Afghanistan and worldwide.">
+  <title>Crown Digital Solutions | Excellence in Every Digital Step</title>
+  <style>
+    :root {
+      --navy: #101d36;
+      --navy-2: #172844;
+      --navy-3: #223754;
+      --gold: #c9a34a;
+      --gold-light: #e5cc88;
+      --white: #fff;
+      --ink: #172033;
+      --muted: #687386;
+      --paper: #f6f7fa;
+      --line: #e7eaf0;
+      --radius: 20px;
+      --shadow: 0 18px 50px rgba(16, 29, 54, .10);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; color: var(--ink); background: var(--white);
+      font-family: Inter, "Segoe UI", Arial, sans-serif; line-height: 1.65;
+    }
+    body[dir="rtl"] { font-family: "Noto Naskh Arabic", Tahoma, Arial, sans-serif; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .container { width: min(1160px, calc(100% - 40px)); margin-inline: auto; }
+    .topbar { background: #0b1528; color: #dce3ef; font-size: .83rem; }
+    .topbar-inner { display: flex; justify-content: space-between; gap: 16px; padding: 9px 0; flex-wrap: wrap; }
+    .topbar a { color: var(--gold-light); }
+    header {
+      position: sticky; top: 0; z-index: 20; background: rgba(16,29,54,.97);
+      backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; min-height: 82px; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 12px; color: var(--white); min-width: 230px; }
+    .brand-mark {
+      width: 48px; height: 48px; border: 1px solid rgba(201,163,74,.65);
+      border-radius: 14px; display: grid; place-items: center; color: var(--gold);
+      background: linear-gradient(145deg, rgba(201,163,74,.16), rgba(255,255,255,.02));
+      font-family: Georgia, serif; font-size: 1.05rem; font-weight: 700; letter-spacing: -2px;
+    }
+    .brand-name { display: block; font-weight: 800; letter-spacing: .07em; font-size: .94rem; line-height: 1.2; }
+    .brand-tag { display: block; color: var(--gold-light); font-size: .68rem; margin-top: 4px; letter-spacing: .03em; }
+    .nav-links { display: flex; align-items: center; gap: 24px; color: #e9edf4; font-size: .91rem; }
+    .nav-links a:hover { color: var(--gold-light); }
+    .nav-actions { display: flex; align-items: center; gap: 10px; }
+    .lang-select {
+      color: white; background: var(--navy-2); border: 1px solid rgba(255,255,255,.22);
+      border-radius: 10px; padding: 9px 10px; outline: none;
+    }
+    .menu-btn { display: none; border: 1px solid rgba(255,255,255,.25); background: transparent; color: white; border-radius: 10px; padding: 8px 11px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      border: 1px solid transparent; border-radius: 999px; padding: 13px 21px;
+      font-weight: 700; transition: .2s ease; cursor: pointer;
+    }
+    .btn-gold { background: var(--gold); color: #172033; }
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-outline { border-color: rgba(255,255,255,.42); color: white; }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold-light); }
+    .hero {
+      position: relative; overflow: hidden; color: white;
+      background: radial-gradient(circle at 80% 15%, rgba(201,163,74,.18), transparent 30%),
+                  linear-gradient(125deg, #101d36 0%, #172b49 58%, #0c172b 100%);
+      padding: 94px 0 100px;
+    }
+    .hero:before {
+      content: "CDS"; position: absolute; inset-inline-end: -30px; bottom: -125px;
+      font: 900 clamp(180px, 32vw, 420px)/1 Georgia, serif;
+      color: rgba(255,255,255,.025); letter-spacing: -.09em; pointer-events: none;
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.2fr .8fr; align-items: center; gap: 58px; position: relative; }
+    .eyebrow { color: var(--gold-light); font-size: .78rem; letter-spacing: .17em; font-weight: 800; text-transform: uppercase; }
+    h1 { font-size: clamp(2.55rem, 5.6vw, 4.65rem); line-height: 1.08; letter-spacing: -.045em; margin: 18px 0; max-width: 780px; }
+    h1 span { color: var(--gold-light); }
+    .hero-copy { max-width: 630px; color: #d4dce8; font-size: 1.08rem; margin-bottom: 30px; }
+    .hero-buttons { display: flex; flex-wrap: wrap; gap: 12px; }
+    .hero-note { margin-top: 25px; color: #b9c5d5; font-size: .88rem; }
+    .hero-card {
+      border: 1px solid rgba(229,204,136,.32); border-radius: 28px; padding: 30px;
+      background: linear-gradient(145deg, rgba(255,255,255,.10), rgba(255,255,255,.035));
+      box-shadow: 0 30px 70px rgba(0,0,0,.2); backdrop-filter: blur(8px);
+    }
+    .crest {
+      width: 100px; height: 100px; margin: 0 auto 22px; border-radius: 28px;
+      display: grid; place-items: center; border: 1px solid rgba(229,204,136,.55);
+      color: var(--gold-light); font: 700 2rem Georgia, serif;
+      background: radial-gradient(circle, rgba(201,163,74,.2), rgba(201,163,74,.04));
+    }
+    .hero-card h2 { text-align: center; color: white; margin: 0; font-size: 1.3rem; }
+    .hero-card p { text-align: center; color: #c8d2e0; margin: 8px 0 24px; }
+    .hero-points { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .hero-point { padding: 13px; background: rgba(255,255,255,.07); border-radius: 13px; color: #edf1f7; font-size: .88rem; }
+    .hero-point b { color: var(--gold-light); display: block; font-size: 1.05rem; }
+    section { padding: 84px 0; }
+    .section-soft { background: var(--paper); }
+    .section-head { max-width: 690px; margin-bottom: 38px; }
+    .section-kicker { color: #9b772b; font-weight: 800; font-size: .77rem; letter-spacing: .14em; text-transform: uppercase; }
+    h2.section-title { color: var(--navy); font-size: clamp(2rem, 3.6vw, 3rem); line-height: 1.15; letter-spacing: -.035em; margin: 10px 0 13px; }
+    .section-desc { color: var(--muted); margin: 0; font-size: 1.02rem; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .service-card {
+      background: white; border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 25px; transition: .22s ease;
+    }
+    .service-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: rgba(201,163,74,.55); }
+    .service-icon { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 14px; background: #f7f0df; color: #87651f; font-size: 1.35rem; }
+    .service-card h3 { color: var(--navy); margin: 17px 0 8px; font-size: 1.12rem; }
+    .service-card p { color: var(--muted); margin: 0; font-size: .94rem; }
+    .about-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 55px; align-items: center; }
+    .about-panel {
+      min-height: 330px; border-radius: 26px; padding: 34px; color: white;
+      background: linear-gradient(145deg, var(--navy-2), var(--navy));
+      display: flex; flex-direction: column; justify-content: space-between;
+      box-shadow: var(--shadow);
+    }
+    .about-panel .big-cds { font: 800 clamp(4rem, 10vw, 7rem)/1 Georgia, serif; color: var(--gold); letter-spacing: -.09em; }
+    .about-panel .small-line { color: #d5deeb; max-width: 260px; }
+    .about-copy p { color: var(--muted); }
+    .check-list { list-style: none; padding: 0; margin: 22px 0 0; display: grid; gap: 12px; }
+    .check-list li { display: flex; gap: 11px; align-items: flex-start; color: #344054; }
+    .check { color: #a27a2b; font-weight: 900; }
+    .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .project-card { background: white; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+    .project-visual { min-height: 175px; padding: 28px; background: linear-gradient(135deg, #142744, #263d5c); color: white; display: flex; flex-direction: column; justify-content: space-between; }
+    .project-visual.gold { background: linear-gradient(135deg, #8e6b28, #d2b15f); color: #172033; }
+    .project-visual .project-mark { font: 800 2.8rem Georgia, serif; opacity: .9; }
+    .project-info { padding: 23px; }
+    .project-info h3 { margin: 0 0 7px; color: var(--navy); }
+    .project-info p { margin: 0; color: var(--muted); font-size: .94rem; }
+    .steps-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+    .step { padding: 22px; background: white; border: 1px solid var(--line); border-radius: 17px; }
+    .step-num { color: #a17a2b; font-weight: 900; font-size: .82rem; letter-spacing: .1em; }
+    .step h3 { color: var(--navy); margin: 9px 0 6px; font-size: 1.05rem; }
+    .step p { color: var(--muted); margin: 0; font-size: .9rem; }
+    .contact-wrap {
+      border-radius: 28px; padding: clamp(28px, 5vw, 55px); color: white;
+      background: radial-gradient(circle at 90% 10%, rgba(201,163,74,.18), transparent 32%), var(--navy);
+      display: grid; grid-template-columns: 1fr auto; gap: 35px; align-items: center;
+    }
+    .contact-wrap h2 { font-size: clamp(2rem, 4vw, 3rem); margin: 8px 0 12px; line-height: 1.15; }
+    .contact-wrap p { color: #d1d9e5; max-width: 620px; margin: 0; }
+    .contact-email { display: inline-block; margin-top: 20px; color: var(--gold-light); font-weight: 700; }
+    .disclaimer { color: #687386; font-size: .82rem; margin-top: 22px; }
+    footer { background: #0b1528; color: #cbd4e1; padding: 28px 0; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; font-size: .88rem; }
+    .footer-brand { color: white; font-weight: 800; letter-spacing: .04em; }
+    .footer-gold { color: var(--gold-light); }
+    [dir="rtl"] .hero-card, [dir="rtl"] .about-panel { text-align: right; }
+    [dir="rtl"] .hero-card h2, [dir="rtl"] .hero-card p { text-align: center; }
+    [dir="rtl"] .brand-name { letter-spacing: 0; }
+    @media (max-width: 900px) {
+      .nav-links { display: none; position: absolute; top: 82px; inset-inline: 0; padding: 20px; background: var(--navy); flex-direction: column; align-items: stretch; gap: 16px; border-top: 1px solid rgba(255,255,255,.1); }
+      .nav-links.open { display: flex; }
+      .menu-btn { display: inline-block; }
+      .hero-grid, .about-grid { grid-template-columns: 1fr; gap: 35px; }
+      .hero { padding: 70px 0; }
+      .hero-card { max-width: 560px; }
+      .services-grid { grid-template-columns: repeat(2,1fr); }
+      .steps-grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 600px) {
+      .container { width: min(100% - 30px, 1160px); }
+      .topbar-inner { justify-content: center; text-align: center; }
+      .nav { min-height: 72px; gap: 10px; }
+      .brand { min-width: 0; gap: 8px; }
+      .brand-mark { width: 42px; height: 42px; }
+      .brand-name { font-size: .78rem; }
+      .brand-tag { font-size: .59rem; }
+      .nav-links { top: 72px; }
+      .lang-select { padding: 8px 6px; font-size: .8rem; max-width: 90px; }
+      .hero { padding: 58px 0 65px; }
+      .hero-grid { gap: 32px; }
+      .hero-copy { font-size: 1rem; }
+      .hero-card { padding: 23px; }
+      section { padding: 64px 0; }
+      .services-grid, .projects-grid, .steps-grid { grid-template-columns: 1fr; }
+      .contact-wrap { grid-template-columns: 1fr; }
+      .contact-wrap .btn { justify-self: start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <span data-i18n="topline">Professional digital services for people and businesses</span>
+      <span><span data-i18n="emailLabel">Email:</span> <a href="mailto:crown.afgtech@gmail.com">crown.afgtech@gmail.com</a></span>
+    </div>
+  </div>
+
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="Crown Digital Solutions home">
+        <span class="brand-mark">CDS</span>
+        <span>
+          <span class="brand-name">CROWN DIGITAL SOLUTIONS</span>
+          <span class="brand-tag" data-i18n="slogan">Excellence in Every Digital Step.</span>
+        </span>
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="#home" data-i18n="navHome">Home</a>
+        <a href="#services" data-i18n="navServices">Services</a>
+        <a href="#about" data-i18n="navAbout">About</a>
+        <a href="#work" data-i18n="navWork">Our Work</a>
+        <a href="#contact" data-i18n="navContact">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <select class="lang-select" id="languageSelect" aria-label="Choose language">
+          <option value="en">English</option>
+          <option value="ps">پښتو</option>
+          <option value="fa">دری</option>
+        </select>
+        <button class="menu-btn" id="menuBtn" aria-label="Open navigation menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow" data-i18n="eyebrow">Digital services • Web • Data • IT</div>
+          <h1 data-i18n="heroTitle">Your vision.<br><span>Our digital expertise.</span></h1>
+          <p class="hero-copy" data-i18n="heroText">Crown Digital Solutions helps individuals, entrepreneurs and businesses move forward with practical digital services, modern websites and reliable IT solutions.</p>
+          <div class="hero-buttons">
+            <a class="btn btn-gold" href="#contact" data-i18n="heroCta">Discuss your project <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-outline" href="#services" data-i18n="heroSecondary">Explore services</a>
+          </div>
+          <p class="hero-note" data-i18n="heroNote">Serving customers in Afghanistan and internationally.</p>
+        </div>
+        <aside class="hero-card">
+          <div class="crest">♛</div>
+          <h2 data-i18n="cardTitle">Excellence in Every Digital Step.</h2>
+          <p data-i18n="cardText">Professional support. Thoughtful solutions. Clear communication.</p>
+          <div class="hero-points">
+            <div class="hero-point"><b>01</b><span data-i18n="point1">Web & IT solutions</span></div>
+            <div class="hero-point"><b>02</b><span data-i18n="point2">Data & documents</span></div>
+            <div class="hero-point"><b>03</b><span data-i18n="point3">Career support</span></div>
+            <div class="hero-point"><b>04</b><span data-i18n="point4">Business services</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker" data-i18n="servicesKicker">What we do</div>
+          <h2 class="section-title" data-i18n="servicesTitle">Digital services built around your needs</h2>
+          <p class="section-desc" data-i18n="servicesDesc">From essential documents to custom web solutions, CDS brings a practical, professional approach to every project.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service-card"><div class="service-icon">✦</div><h3 data-i18n="s1Title">Career & Employment</h3><p data-i18n="s1Text">CV and resume creation, cover letters, LinkedIn profile improvement and job application document support.</p></article>
+          <article class="service-card"><div class="service-icon">◇</div><h3 data-i18n="s2Title">Scholarship Support</h3><p data-i18n="s2Text">Scholarship research, application guidance, motivation letters and supporting document preparation.</p></article>
+          <article class="service-card"><div class="service-icon">▤</div><h3 data-i18n="s3Title">Documents & Office</h3><p data-i18n="s3Text">Typing, formatting, translation, reports, presentations and Microsoft Word and Excel assistance.</p></article>
+          <article class="service-card"><div class="service-icon">▦</div><h3 data-i18n="s4Title">Data & Reporting</h3><p data-i18n="s4Text">Data entry, cleaning, collection, verification, database support, Excel reporting and analysis.</p></article>
+          <article class="service-card"><div class="service-icon">⌘</div><h3 data-i18n="s5Title">Web & IT Solutions</h3><p data-i18n="s5Text">Responsive websites, database development, web applications, technical support and custom systems.</p></article>
+          <article class="service-card"><div class="service-icon">◎</div><h3 data-i18n="s6Title">Digital Business Support</h3><p data-i18n="s6Text">Social media support, digital marketing assistance, online registrations and other digital tasks.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-soft" id="about">
+      <div class="container about-grid">
+        <div class="about-panel">
+          <div class="eyebrow" data-i18n="aboutPanelKicker">The CDS approach</div>
+          <div class="big-cds">CDS</div>
+          <div class="small-line" data-i18n="aboutPanelText">A digital services company focused on useful work, dependable communication and professional delivery.</div>
+        </div>
+        <div class="about-copy">
+          <div class="section-kicker" data-i18n="aboutKicker">Who we are</div>
+          <h2 class="section-title" data-i18n="aboutTitle">A trusted partner for your digital journey</h2>
+          <p data-i18n="aboutText">Crown Digital Solutions is an online digital services and IT solutions company serving individuals, professionals and businesses in Afghanistan and beyond. We aim to make digital work clearer, easier and more effective through practical services and tailored technology.</p>
+          <ul class="check-list">
+            <li><span class="check">✓</span><span data-i18n="aboutPoint1">Professional, customer-focused communication</span></li>
+            <li><span class="check">✓</span><span data-i18n="aboutPoint2">Practical solutions shaped around each project</span></li>
+            <li><span class="check">✓</span><span data-i18n="aboutPoint3">Clear scope, realistic expectations and honest delivery</span></li>
+            <li><span class="check">✓</span><span data-i18n="aboutPoint4">Online service for local and international customers</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="work">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker" data-i18n="workKicker">Selected work</div>
+          <h2 class="section-title" data-i18n="workTitle">Technology with a practical purpose</h2>
+          <p class="section-desc" data-i18n="workDesc">A look at project experience that informs our approach to business systems and data-driven solutions.</p>
+        </div>
+        <div class="projects-grid">
+          <article class="project-card">
+            <div class="project-visual"><span class="eyebrow" data-i18n="projectLabel">PROJECT EXPERIENCE</span><span class="project-mark">HRIMS</span></div>
+            <div class="project-info"><h3 data-i18n="project1Title">Human Resource Information Management System</h3><p data-i18n="project1Text">A human resources information system project focused on organizing HR information and supporting structured data management.</p></div>
+          </article>
+          <article class="project-card">
+            <div class="project-visual gold"><span class="eyebrow" data-i18n="projectLabel">PROJECT EXPERIENCE</span><span class="project-mark">FX / POS</span></div>
+            <div class="project-info"><h3 data-i18n="project2Title">Shop Currency Management System</h3><p data-i18n="project2Text">A shop-focused currency management project demonstrating practical business data and transaction management concepts.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-soft">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker" data-i18n="processKicker">How we work</div>
+          <h2 class="section-title" data-i18n="processTitle">A clear process from start to finish</h2>
+          <p class="section-desc" data-i18n="processDesc">We keep projects straightforward, with clear communication at every stage.</p>
+        </div>
+        <div class="steps-grid">
+          <article class="step"><div class="step-num">01 / <span data-i18n="stepLabel">STEP</span></div><h3 data-i18n="step1Title">Tell us what you need</h3><p data-i18n="step1Text">Share your goal, requirements and preferred timeline.</p></article>
+          <article class="step"><div class="step-num">02 / <span data-i18n="stepLabel">STEP</span></div><h3 data-i18n="step2Title">Review the scope</h3><p data-i18n="step2Text">We discuss the work, deliverables and practical next steps.</p></article>
+          <article class="step"><div class="step-num">03 / <span data-i18n="stepLabel">STEP</span></div><h3 data-i18n="step3Title">Work together</h3><p data-i18n="step3Text">We carry out the agreed work and keep communication clear.</p></article>
+          <article class="step"><div class="step-num">04 / <span data-i18n="stepLabel">STEP</span></div><h3 data-i18n="step4Title">Review & deliver</h3><p data-i18n="step4Text">You review the result and we complete the agreed delivery.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-wrap">
+          <div>
+            <div class="eyebrow" data-i18n="contactKicker">Let's work together</div>
+            <h2 data-i18n="contactTitle">Have a project in mind?</h2>
+            <p data-i18n="contactText">Tell us what you are looking to achieve. Contact Crown Digital Solutions to discuss your requirements and the right next step.</p>
+            <a class="contact-email" href="mailto:crown.afgtech@gmail.com">crown.afgtech@gmail.com</a>
+          </div>
+          <a class="btn btn-gold" href="mailto:crown.afgtech@gmail.com?subject=Project%20Inquiry%20-%20Crown%20Digital%20Solutions" data-i18n="contactButton">Send an inquiry ↗</a>
+        </div>
+        <p class="disclaimer" data-i18n="disclaimer">Important: Career and scholarship support is provided as application assistance only. Jobs, admissions, scholarships, visas or other outcomes are not guaranteed. Services are subject to project review and agreement.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div><span class="footer-brand">CROWN DIGITAL SOLUTIONS</span><br><span class="footer-gold" data-i18n="slogan">Excellence in Every Digital Step.</span></div>
+      <div>© <span id="year"></span> Crown Digital Solutions. <span data-i18n="rights">All rights reserved.</span></div>
+    </div>
+  </footer>
+
+  <script>
+    const translations = {
+      en: {
+        topline:"Professional digital services for people and businesses", emailLabel:"Email:", slogan:"Excellence in Every Digital Step.",
+        navHome:"Home",navServices:"Services",navAbout:"About",navWork:"Our Work",navContact:"Contact",
+        eyebrow:"Digital services • Web • Data • IT",heroTitle:'Your vision.<br><span>Our digital expertise.</span>',
+        heroText:"Crown Digital Solutions helps individuals, entrepreneurs and businesses move forward with practical digital services, modern websites and reliable IT solutions.",
+        heroCta:'Discuss your project <span aria-hidden="true">↗</span>',heroSecondary:"Explore services",heroNote:"Serving customers in Afghanistan and internationally.",
+        cardTitle:"Excellence in Every Digital Step.",cardText:"Professional support. Thoughtful solutions. Clear communication.",
+        point1:"Web & IT solutions",point2:"Data & documents",point3:"Career support",point4:"Business services",
+        servicesKicker:"What we do",servicesTitle:"Digital services built around your needs",servicesDesc:"From essential documents to custom web solutions, CDS brings a practical, professional approach to every project.",
+        s1Title:"Career & Employment",s1Text:"CV and resume creation, cover letters, LinkedIn profile improvement and job application document support.",
+        s2Title:"Scholarship Support",s2Text:"Scholarship research, application guidance, motivation letters and supporting document preparation.",
+        s3Title:"Documents & Office",s3Text:"Typing, formatting, translation, reports, presentations and Microsoft Word and Excel assistance.",
+        s4Title:"Data & Reporting",s4Text:"Data entry, cleaning, collection, verification, database support, Excel reporting and analysis.",
+        s5Title:"Web & IT Solutions",s5Text:"Responsive websites, database development, web applications, technical support and custom systems.",
+        s6Title:"Digital Business Support",s6Text:"Social media support, digital marketing assistance, online registrations and other digital tasks.",
+        aboutPanelKicker:"The CDS approach",aboutPanelText:"A digital services company focused on useful work, dependable communication and professional delivery.",
+        aboutKicker:"Who we are",aboutTitle:"A trusted partner for your digital journey",aboutText:"Crown Digital Solutions is an online digital services and IT solutions company serving individuals, professionals and businesses in Afghanistan and beyond. We aim to make digital work clearer, easier and more effective through practical services and tailored technology.",
+        aboutPoint1:"Professional, customer-focused communication",aboutPoint2:"Practical solutions shaped around each project",aboutPoint3:"Clear scope, realistic expectations and honest delivery",aboutPoint4:"Online service for local and international customers",
+        workKicker:"Selected work",workTitle:"Technology with a practical purpose",workDesc:"A look at project experience that informs our approach to business systems and data-driven solutions.",
+        projectLabel:"PROJECT EXPERIENCE",project1Title:"Human Resource Information Management System",project1Text:"A human resources information system project focused on organizing HR information and supporting structured data management.",
+        project2Title:"Shop Currency Management System",project2Text:"A shop-focused currency management project demonstrating practical business data and transaction management concepts.",
+        processKicker:"How we work",processTitle:"A clear process from start to finish",processDesc:"We keep projects straightforward, with clear communication at every stage.",
+        stepLabel:"STEP",step1Title:"Tell us what you need",step1Text:"Share your goal, requirements and preferred timeline.",step2Title:"Review the scope",step2Text:"We discuss the work, deliverables and practical next steps.",
+        step3Title:"Work together",step3Text:"We carry out the agreed work and keep communication clear.",step4Title:"Review & deliver",step4Text:"You review the result and we complete the agreed delivery.",
+        contactKicker:"Let's work together",contactTitle:"Have a project in mind?",contactText:"Tell us what you are looking to achieve. Contact Crown Digital Solutions to discuss your requirements and the right next step.",
+        contactButton:"Send an inquiry ↗",disclaimer:"Important: Career and scholarship support is provided as application assistance only. Jobs, admissions, scholarships, visas or other outcomes are not guaranteed. Services are subject to project review and agreement.",
+        rights:"All rights reserved."
+      },
+      ps: {
+        topline:"د اشخاصو او سوداګریو لپاره مسلکي ډیجیټلي خدمتونه",emailLabel:"برېښنالیک:",slogan:"په هر ډیجیټلي ګام کې غوره‌والی.",
+        navHome:"کور",navServices:"خدمتونه",navAbout:"زموږ په اړه",navWork:"زموږ کارونه",navContact:"اړیکه",
+        eyebrow:"ډیجیټلي خدمتونه • وېب • معلومات • آی ټي",heroTitle:'ستاسو لیدلوری.<br><span>زموږ ډیجیټلي وړتیا.</span>',
+        heroText:"کراؤن ډیجیټل سولوشنز له اشخاصو، متشبثینو او سوداګریو سره د عملي ډیجیټلي خدمتونو، عصري وېبپاڼو او باوري آی ټي حللارو په برخه کې مرسته کوي.",
+        heroCta:'د خپلې پروژې په اړه خبرې وکړئ <span aria-hidden="true">↗</span>',heroSecondary:"خدمتونه وګورئ",heroNote:"په افغانستان او نړیواله کچه د پېرودونکو خدمت.",
+        cardTitle:"په هر ډیجیټلي ګام کې غوره‌والی.",cardText:"مسلکي ملاتړ. اغېزمنې حللارې. روښانه اړیکه.",
+        point1:"وېب او آی ټي حللارې",point2:"معلومات او اسناد",point3:"د مسلک ملاتړ",point4:"سوداګریز خدمتونه",
+        servicesKicker:"زموږ کار",servicesTitle:"ستاسو د اړتیاوو لپاره ډیجیټلي خدمتونه",servicesDesc:"له اړینو اسنادو څخه تر ځانګړو وېب حللارو پورې، CDS هرې پروژې ته عملي او مسلکي چلند لري.",
+        s1Title:"دندې او مسلک",s1Text:"د سي وي او رېزومې جوړول، پوښښ لیکونه، د لینکډاېن پروفایل ښه کول او د دندو غوښتنلیک اسناد.",
+        s2Title:"د بورسونو ملاتړ",s2Text:"د بورسونو څېړنه، د غوښتنلیک لارښوونه، انګېزشي لیکونه او د ملاتړو اسنادو چمتو کول.",
+        s3Title:"اسناد او دفتري چارې",s3Text:"ټایپ، بڼه ورکول، ژباړه، راپورونه، پریزنټېشنونه او د مایکروسافټ ورډ او اېکسل خدمتونه.",
+        s4Title:"معلومات او راپورونه",s4Text:"د معلوماتو داخلول، پاکول، راټولول، کره کول، د ډیټابېس ملاتړ او د اېکسل راپورونه.",
+        s5Title:"وېب او آی ټي حللارې",s5Text:"ځواب ویونکې وېبپاڼې، د ډیټابېس جوړول، وېب اپلېکېشنونه، تخنیکي ملاتړ او ځانګړي سیسټمونه.",
+        s6Title:"د ډیجیټلي سوداګرۍ ملاتړ",s6Text:"د ټولنیزو رسنیو ملاتړ، ډیجیټلي بازارموندنه، انلاین نوملیکنې او نور ډیجیټلي کارونه.",
+        aboutPanelKicker:"د CDS تګلاره",aboutPanelText:"د ډیجیټلي خدمتونو شرکت چې پر ګټور کار، باوري اړیکو او مسلکي سپارلو تمرکز کوي.",
+        aboutKicker:"موږ څوک یو",aboutTitle:"ستاسو د ډیجیټلي سفر باوري ملګری",aboutText:"کراؤن ډیجیټل سولوشنز د انلاین ډیجیټلي خدمتونو او آی ټي حللارو شرکت دی چې په افغانستان او نورو هېوادونو کې اشخاصو، مسلکي کسانو او سوداګریو ته خدمتونه وړاندې کوي. زموږ موخه د عملي خدمتونو او مناسبو ټکنالوژیکي حللارو له لارې ډیجیټلي چارې روښانه، اسانه او اغېزمنې کول دي.",
+        aboutPoint1:"مسلکي او د پېرودونکي پر اړتیا متمرکزه اړیکه",aboutPoint2:"د هرې پروژې لپاره عملي حللارې",aboutPoint3:"روښانه کاري ساحه، واقعي تمې او رښتینی خدمت",aboutPoint4:"د کورنیو او نړیوالو پېرودونکو لپاره انلاین خدمت",
+        workKicker:"غوره شوې پروژې",workTitle:"د عملي موخې لپاره ټکنالوژي",workDesc:"د هغو پروژو بېلګې چې د سوداګریزو سیسټمونو او معلوماتو پر بنسټ حللارو کې زموږ چلند څرګندوي.",
+        projectLabel:"د پروژې تجربه",project1Title:"د بشري سرچینو د معلوماتو مدیریت سیسټم",project1Text:"د بشري سرچینو د معلوماتو د تنظیم او منظم مدیریت لپاره یوه پروژه.",
+        project2Title:"د هټۍ د اسعارو مدیریت سیسټم",project2Text:"د هټۍ لپاره د اسعارو د مدیریت پروژه چې د سوداګریزو معلوماتو او معاملاتو د مدیریت مفاهیم ښيي.",
+        processKicker:"زموږ کاري طریقه",processTitle:"له پیل څخه تر پای پورې روښانه بهیر",processDesc:"موږ پروژې ساده ساتو او په هر پړاو کې روښانه اړیکه نیسو.",
+        stepLabel:"ګام",step1Title:"خپله اړتیا ووایاست",step1Text:"خپل هدف، اړتیاوې او د وخت مهالوېش راسره شریک کړئ.",step2Title:"د کار ساحه وڅېړو",step2Text:"د کار، سپارل کېدونکو پایلو او راتلونکو ګامونو په اړه خبرې کوو.",
+        step3Title:"ګډ کار",step3Text:"پر هوکړه شوي کار عمل کوو او اړیکه روښانه ساتو.",step4Title:"بیاکتنه او سپارل",step4Text:"تاسو پایله ګورئ او موږ هوکړه شوی کار سپارو.",
+        contactKicker:"راځئ ګډ کار وکړو",contactTitle:"پروژه لرئ؟",contactText:"موږ ته ووایاست چې څه ترلاسه کول غواړئ. له کراؤن ډیجیټل سولوشنز سره اړیکه ونیسئ، څو ستاسو اړتیاوې او مناسب راتلونکی ګام وڅېړو.",
+        contactButton:"د غوښتنې لېږل ↗",disclaimer:"مهم: د دندو او بورسونو ملاتړ یوازې د غوښتنلیک په چمتو کولو کې مرسته ده. دندې، منل کېدل، بورسونه، ویزې یا نورې پایلې تضمین نه دي. خدمتونه د پروژې تر ارزونې او هوکړې وروسته وړاندې کېږي.",
+        rights:"ټول حقونه خوندي دي."
+      },
+      fa: {
+        topline:"خدمات دیجیتلی مسلکی برای افراد و کسب‌وکارها",emailLabel:"ایمیل:",slogan:"برتری در هر گام دیجیتلی.",
+        navHome:"صفحه اصلی",navServices:"خدمات",navAbout:"درباره ما",navWork:"نمونه‌کارها",navContact:"تماس",
+        eyebrow:"خدمات دیجیتلی • ویب • معلومات • آی‌تی",heroTitle:'دیدگاه شما.<br><span>تخصص دیجیتلی ما.</span>',
+        heroText:"کراؤن دیجیتل سولوشنز به افراد، کارآفرینان و کسب‌وکارها کمک می‌کند تا با خدمات عملی دیجیتلی، وب‌سایت‌های مدرن و راه‌حل‌های قابل اعتماد آی‌تی پیشرفت کنند.",
+        heroCta:'درباره پروژه‌تان گفتگو کنیم <span aria-hidden="true">↗</span>',heroSecondary:"مشاهده خدمات",heroNote:"ارائه خدمات به مشتریان در افغانستان و سراسر جهان.",
+        cardTitle:"برتری در هر گام دیجیتلی.",cardText:"پشتیبانی مسلکی. راه‌حل‌های سنجیده. ارتباط روشن.",
+        point1:"راه‌حل‌های ویب و آی‌تی",point2:"معلومات و اسناد",point3:"پشتیبانی کاریابی",point4:"خدمات تجارتی",
+        servicesKicker:"فعالیت‌های ما",servicesTitle:"خدمات دیجیتلی متناسب با نیازهای شما",servicesDesc:"از اسناد ضروری تا راه‌حل‌های اختصاصی ویب، CDS برای هر پروژه رویکردی عملی و مسلکی دارد.",
+        s1Title:"کاریابی و امور شغلی",s1Text:"تهیه سی‌وی و خلص‌سوانح، نامه‌های معرفی، بهبود پروفایل لینکدین و پشتیبانی اسناد درخواست وظیفه.",
+        s2Title:"پشتیبانی بورسیه",s2Text:"جستجوی بورسیه‌ها، راهنمایی درخواست، نامه‌های انگیزشی و آماده‌سازی اسناد حمایوی.",
+        s3Title:"اسناد و امور دفتری",s3Text:"تایپ، تنظیم قالب، ترجمه، گزارش‌ها، پریزنتیشن‌ها و خدمات مایکروسافت ورد و اکسل.",
+        s4Title:"مدیریت معلومات و گزارش‌دهی",s4Text:"ثبت، پاک‌سازی، جمع‌آوری و بررسی معلومات، پشتیبانی دیتابیس و گزارش‌دهی اکسل.",
+        s5Title:"راه‌حل‌های ویب و آی‌تی",s5Text:"وب‌سایت‌های واکنش‌گرا، توسعه دیتابیس، برنامه‌های ویب، پشتیبانی تخنیکی و سیستم‌های سفارشی.",
+        s6Title:"پشتیبانی تجارت دیجیتلی",s6Text:"پشتیبانی رسانه‌های اجتماعی، کمک در بازاریابی دیجیتلی، ثبت‌نام‌های آنلاین و سایر امور دیجیتلی.",
+        aboutPanelKicker:"روش کاری CDS",aboutPanelText:"یک شرکت خدمات دیجیتلی با تمرکز بر کار مفید، ارتباط قابل اعتماد و ارائه مسلکی.",
+        aboutKicker:"ما کی هستیم",aboutTitle:"همراه قابل اعتماد شما در مسیر دیجیتلی",aboutText:"کراؤن دیجیتل سولوشنز یک شرکت خدمات آنلاین دیجیتلی و راه‌حل‌های آی‌تی است که به افراد، متخصصان و کسب‌وکارها در افغانستان و فراتر از آن خدمات ارائه می‌کند. هدف ما ساده‌تر، روشن‌تر و مؤثرتر ساختن کارهای دیجیتلی از طریق خدمات عملی و تکنالوژی متناسب است.",
+        aboutPoint1:"ارتباط مسلکی و متمرکز بر مشتری",aboutPoint2:"راه‌حل‌های عملی متناسب با هر پروژه",aboutPoint3:"حدود کاری روشن، توقعات واقع‌بینانه و اجرای صادقانه",aboutPoint4:"خدمات آنلاین برای مشتریان داخلی و بین‌المللی",
+        workKicker:"نمونه تجربه‌ها",workTitle:"تکنالوژی با هدف عملی",workDesc:"نمونه‌هایی از تجربه پروژه‌ای که رویکرد ما را در سیستم‌های تجارتی و راه‌حل‌های مبتنی بر معلومات شکل می‌دهد.",
+        projectLabel:"تجربه پروژه",project1Title:"سیستم مدیریت معلومات منابع بشری",project1Text:"پروژه سیستم معلومات منابع بشری با تمرکز بر تنظیم معلومات منابع بشری و پشتیبانی مدیریت ساختاریافته معلومات.",
+        project2Title:"سیستم مدیریت اسعار دوکان",project2Text:"پروژه مدیریت اسعار برای دوکان که مفاهیم عملی مدیریت معلومات تجارتی و معاملات را نشان می‌دهد.",
+        processKicker:"روش کار ما",processTitle:"روند روشن از آغاز تا انجام",processDesc:"ما پروژه‌ها را ساده نگه می‌داریم و در هر مرحله ارتباط روشن برقرار می‌کنیم.",
+        stepLabel:"مرحله",step1Title:"نیاز خود را بیان کنید",step1Text:"هدف، نیازمندی‌ها و زمان‌بندی مورد نظر خود را شریک سازید.",step2Title:"محدوده کار را بررسی کنیم",step2Text:"درباره کار، موارد قابل تحویل و گام‌های بعدی گفتگو می‌کنیم.",
+        step3Title:"همکاری مشترک",step3Text:"کار توافق‌شده را انجام می‌دهیم و ارتباط روشن را حفظ می‌کنیم.",step4Title:"بازبینی و تحویل",step4Text:"شما نتیجه را بررسی می‌کنید و ما کار توافق‌شده را تحویل می‌دهیم.",
+        contactKicker:"بیایید همکاری کنیم",contactTitle:"پروژه‌ای در نظر دارید؟",contactText:"به ما بگویید چه هدفی دارید. برای بررسی نیازمندی‌ها و گام مناسب بعدی با کراؤن دیجیتل سولوشنز تماس بگیرید.",
+        contactButton:"ارسال درخواست ↗",disclaimer:"مهم: پشتیبانی کاریابی و بورسیه تنها به معنی کمک در روند درخواست است. استخدام، پذیرش، بورسیه، ویزه یا سایر نتایج تضمین نمی‌شود. ارائه خدمات پس از بررسی پروژه و توافق انجام می‌شود.",
+        rights:"تمام حقوق محفوظ است."
+      }
+    };
+
+    const languageSelect = document.getElementById("languageSelect");
+    function setLanguage(lang) {
+      const dictionary = translations[lang] || translations.en;
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === "en" ? "ltr" : "rtl";
+      document.body.dir = lang === "en" ? "ltr" : "rtl";
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const key = element.getAttribute("data-i18n");
+        if (dictionary[key] !== undefined) element.innerHTML = dictionary[key];
+      });
+      languageSelect.value = lang;
+      try { localStorage.setItem("cds-language", lang); } catch (error) {}
+    }
+    languageSelect.addEventListener("change", (event) => setLanguage(event.target.value));
+    document.getElementById("menuBtn").addEventListener("click", () => {
+      document.getElementById("navLinks").classList.toggle("open");
+    });
+    document.querySelectorAll(".nav-links a").forEach(link => link.addEventListener("click", () => {
+      document.getElementById("navLinks").classList.remove("open");
+    }));
+    document.getElementById("year").textContent = new Date().getFullYear();
+    let preferred = "en";
+    try { preferred = localStorage.getItem("cds-language") || "en"; } catch (error) {}
+    setLanguage(preferred);
+  </script>
+</body>
+</html>
